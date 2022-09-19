@@ -1,6 +1,6 @@
-package ru.vsu.cs.corse1.elements;
+package ru.vsu.cs.course2_lyubchenko_kg.elements;
 
-import ru.vsu.cs.corse1.DrawingUtils;
+import ru.vsu.cs.course2_lyubchenko_kg.DrawingUtils;
 
 import java.awt.*;
 

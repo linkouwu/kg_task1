@@ -1,7 +1,6 @@
-package ru.vsu.cs.corse1;
+package ru.vsu.cs.course2_lyubchenko_kg;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
 

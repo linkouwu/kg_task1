@@ -1,4 +1,4 @@
-package ru.vsu.cs.corse1;
+package ru.vsu.cs.course2_lyubchenko_kg;
 
 import java.awt.*;
 

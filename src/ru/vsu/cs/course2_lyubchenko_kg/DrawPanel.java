@@ -1,6 +1,6 @@
-package ru.vsu.cs.corse1;
+package ru.vsu.cs.course2_lyubchenko_kg;
 
-import ru.vsu.cs.corse1.elements.*;
+import ru.vsu.cs.course2_lyubchenko_kg.elements.*;
 
 import javax.swing.*;
 import java.awt.*;
