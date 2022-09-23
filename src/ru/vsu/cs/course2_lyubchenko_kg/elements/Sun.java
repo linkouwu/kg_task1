@@ -5,7 +5,7 @@ import java.awt.*;
 public class Sun {
 
     private final int x;
-    private final int y;
+    private int y;
     private final int w;
     private final int h;
 
@@ -18,6 +18,14 @@ public class Sun {
 
     public int getX() {
         return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getW() {

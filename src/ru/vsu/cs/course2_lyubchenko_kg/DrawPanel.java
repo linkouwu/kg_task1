@@ -31,7 +31,7 @@ public class DrawPanel extends JPanel implements ActionListener {
 
         sky = new Sky(0, 0, 800, 600);
 
-        sun = new Sun(300, 40, 40, 40);
+        sun = new Sun(300, 150, 40, 40);
 
         cl1 = new Cloud(470, 30, 45, c6);
         cl2 = new Cloud(100, 20, 55, c6);
@@ -91,14 +91,20 @@ public class DrawPanel extends JPanel implements ActionListener {
         g.setColor(cSun);
         sun.draw(g);
 
+        if (sun.getY() < 0){
+            sun.setY(200);
+        }
         if (cl1.getX() > 800){
             cl1.setX(-cl1.getR() / 2 * 5);
         }
         if (cl2.getX() > 800){
             cl2.setX(-cl2.getR() / 2 * 5);
         }
+        sun.setY(sun.getY() - 1);
         cl1.setX(cl1.getX() + 1);
         cl2.setX(cl2.getX() + 1);
+        g.setColor(cSun);
+        sun.draw(g);
         cl1.draw(g);
         cl2.draw(g);
 
