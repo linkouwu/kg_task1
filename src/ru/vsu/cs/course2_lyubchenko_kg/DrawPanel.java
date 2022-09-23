@@ -4,16 +4,20 @@ import ru.vsu.cs.course2_lyubchenko_kg.elements.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel implements ActionListener {
     private static Block b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15;
     private static OvalTree ot1, ot2, ot3, ot4;
     private static TriangleTree tt1, tt2, tt3, tt4, tt5, tt6, tt7;
     private static SpruceTree st1, st2, st3, st4;
     private static Cloud cl1, cl2;
-    private Color c1, c2, c3, c4, c5, c6;
+    private Sun sun;
+    private Sky sky;
+    private Color c1, c2, c3, c4, c5, c6, cSky, cSun;
+    private Timer t = new Timer(75, this);
 
     public DrawPanel() {
         c1 = new Color(182, 239, 224);
@@ -22,17 +26,15 @@ public class DrawPanel extends JPanel {
         c4 = new Color(45, 61, 120);
         c5 = new Color(31, 31, 93);
         c6 = new Color(212, 248, 238);
+        cSky = new Color(255, 255, 255);
+        cSun = new Color(254, 203, 184);
+
+        sky = new Sky(0, 0, 800, 600);
+
+        sun = new Sun(300, 40, 40, 40);
 
         cl1 = new Cloud(470, 30, 45, c6);
         cl2 = new Cloud(100, 20, 55, c6);
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                cl1.setX(cl1.getX() + 1);
-                cl2.setX(cl2.getX() + 1);
-                repaint();
-            }
-        });
 
         //слой 1
         b1 = new Block(-100, 70, 250, 50, c1);
@@ -73,6 +75,8 @@ public class DrawPanel extends JPanel {
         ot3 = new OvalTree(150, 350, 55, c5);
         st4 = new SpruceTree(520, 360, 50, 80, c5);
         tt7 = new TriangleTree(700, 410, 40, 50,c5);
+
+        t.start();
     }
 
     @Override
@@ -81,10 +85,20 @@ public class DrawPanel extends JPanel {
         Graphics2D g = (Graphics2D) gr;
         Color prevColor = g.getColor();
 
-        g.setColor(new Color(255, 255, 255));
-        g.fillRect(0, 0, 800, 600);
-        g.setColor(new Color(254, 203, 184));
-        g.fillOval(300, 40, 40, 40);
+        g.setColor(cSky);
+        sky.draw(g);
+
+        g.setColor(cSun);
+        sun.draw(g);
+
+        if (cl1.getX() > 800){
+            cl1.setX(-cl1.getR() / 2 * 5);
+        }
+        if (cl2.getX() > 800){
+            cl2.setX(-cl2.getR() / 2 * 5);
+        }
+        cl1.setX(cl1.getX() + 1);
+        cl2.setX(cl2.getX() + 1);
         cl1.draw(g);
         cl2.draw(g);
 
@@ -134,5 +148,10 @@ public class DrawPanel extends JPanel {
         tt7.draw(g);
 
         g.setColor(prevColor);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        repaint();
     }
 }

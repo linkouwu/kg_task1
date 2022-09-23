@@ -22,6 +22,10 @@ public class Cloud {
         this.y = y;
     }
 
+    public int getR(){
+        return r;
+    }
+
     public Cloud(int x, int y, int r, Color c) {
         this.x = x;
         this.y = y;
